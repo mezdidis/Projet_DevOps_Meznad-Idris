@@ -31,14 +31,50 @@ pipeline {
                 git branch: 'master', url:'https://github.com/Ozz007/sb3t'
             }
         }
+        stage('compile-git'){
+            steps{
+                script{
+                    sh 'mvn package '
+                }
+            }
 
-        stage('Job MVM') {
+        }
+
+
+        stage('Job compile') {
             steps{
                 script{
                     sh 'mvn compile '
+
+                }
+            }
+        }
+        stage('test'){
+            steps{
+                script{
                     sh 'mvn test'
+                }
+            }
+        }
+        stage('verify'){
+            steps{
+                script{
                     sh 'mvn verify'
+                }
+            }
+        }
+        stage('install'){
+            steps{
+                script{
                     sh 'mvn install'
+                }
+            }
+        }
+
+        stage('Rename'){
+            steps{
+                script{
+                    sh "mv sb3t-ws/target/sb3t-ws-1.0-SNAPSHOT.jar sb3t-${params.VERSION}-${params.VERSION_TYPE}.jar"
                 }
             }
         }

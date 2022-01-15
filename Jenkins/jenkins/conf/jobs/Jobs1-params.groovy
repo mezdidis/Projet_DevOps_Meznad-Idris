@@ -15,11 +15,11 @@ pipeline {
             steps {
                 echo "BRANCH ${params.PERSON}"
 
-                echo "Biography: ${params.BIOGRAPHY}"
+                echo "SKIP_TESTS: ${params.BIOGRAPHY}"
 
-                echo "Toggle: ${params.TOGGLE}"
+                echo "VERSION_TYPE: ${params.TOGGLE}"
 
-                echo "Choice: ${params.CHOICE}"
+                echo "VERSION: ${params.CHOICE}"
 
                 echo "Password: ${params.PASSWORD}"
             }
