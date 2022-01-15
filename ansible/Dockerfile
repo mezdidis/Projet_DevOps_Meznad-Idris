@@ -30,8 +30,9 @@ RUN apt-get update && \
    apt-get -y install docker-ce
 
 # Load plugins w jenkins-plugin-cli
-COPY --chown=jenkins:jenkins ../../terraform/conf/plugins.txt /usr/share/jenkins/ref/plugins.txt
+COPY --chown=jenkins:jenkins conf/plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN jenkins-plugin-cli -f /usr/share/jenkins/ref/plugins.txt
+
 
 USER jenkins
 # Jenkins runs all grovy files from init.groovy.d dir
