@@ -1,0 +1,44 @@
+#cloud-config
+groups:
+  - ubuntu: [root,sys]
+  - hashicorp
+
+# Add users to the system. Users are added after groups are added.
+users:
+  - default
+  - name: deploy
+    gecos: terraform
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: sudo , users, admin
+    lock_passwd: false
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCyzuznfHzU8xZUdgf5w8DEI76i/Q0a/HOCd9UPgjj5SBGxW1JYPb++M2GEQulyqTc90wxhfFLj2dtY/k17TWl1V10G+VhfEyO68EEk8Oh/SzniBFpGZ+PNA+2WV+HtM94Ccd/3EU5nVDsdQaqWH8X/IYGNvNrHoL3NkPCuYtr2EUm0lVv4CM5jW2nZZCFqAckJprkIMYZH+tCBCj9JIVXehiTXFvRQ7YKHeoBLk+JO4cLA4LL/WerQ0g1Yz8IAggdgPvxQWa80pxLUorZoetrlT+KExxrfM6rZGesjJza7bXHTXEj32hAgXO3W+4pLpAT07zVsIZkRJ7ycCt8vnsypK+sqLFGMjz/KWLuRgFyJo8U38rsEKKoTOXBonHt6I8XjVc6aIuoDT0xc8bYhcK5QvA9jQOuXOw05W7Umasye7fFRzpS5QwGaZxQdHYzDODNRqijwD1jSUQWe0K2rKgzXGe0aQxWJOCmKP5frMtcfYodvDu/Dtuvx02c2QyIsoOs= mezdidis@MSI
+
+packages:
+  - python3
+#-------------- correction ----------------------
+#groups
+# - deploy
+
+#users:
+# - name :deploy
+#   gecos : "utilisateur ansible" // présentation
+#   home : /home/deploy
+#   primary-group : deploy
+#   sudo: ALL=(ALL) NOPASSWD:ALL
+#   ssh_authorized_keys:
+#       - ssh-rsa
+
+# dans les ressources
+#  data "template_file" "my_cloud_init" {
+#  template = file("path vers le YAML ")
+#   vars =
+#     {ssh_authorized_key = file (path ssh pub ) / nom_variable = path  }
+#}
+
+#dans ressources instance
+#  user_data                   = data.template_file.nom_de la ressources .rendered
+
+#
+#
